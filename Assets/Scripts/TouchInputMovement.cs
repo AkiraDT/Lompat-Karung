@@ -6,12 +6,18 @@ using UnityEngine.UI;
 
 public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
 	//Untuk mengontrol player
+	public float tiltSmooth;
+
 	GameObject Player;
 	private float jumpPressure;
 	private float minJump;
 	private float maxJumpPressure;
 	private Rigidbody2D rb;
 	private bool hold;
+
+	private Quaternion downRotation;
+	private Quaternion forwardRotation;
+
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +27,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		minJump = 2f;
 		jumpPressure = 0f;
 		maxJumpPressure = 10f;
+
+		downRotation = Quaternion.Euler (0f,0f,-90f);
+		forwardRotation = Quaternion.Euler (0f,0f,35f);
 	}
 
 	void Update(){
@@ -33,6 +42,10 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				//}
 			}
 		}
+
+		if (!Player.GetComponent<PlayerScript> ().OnGround) {
+			Player.transform.rotation = Quaternion.Lerp (Player.transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
+		}
 	}
 
 	//ketika menyentuh layar
@@ -43,6 +56,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
 		hold = false;
+		Player.transform.rotation = forwardRotation;
 		if (jumpPressure > 0) {
 			jumpPressure = jumpPressure + minJump;
 			rb.velocity = new Vector2 (jumpPressure/2f, jumpPressure);
