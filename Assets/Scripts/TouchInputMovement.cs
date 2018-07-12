@@ -9,11 +9,13 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	public float tiltSmooth;
 
 	GameObject Player;
+	PijakanManagerScript PM;
 	private float jumpPressure;
 	private float minJump;
 	private float maxJumpPressure;
 	private Rigidbody2D rb;
 	private bool hold;
+
 
 	private Quaternion downRotation;
 	private Quaternion forwardRotation;
@@ -23,6 +25,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
+		PM = GameObject.FindObjectOfType<PijakanManagerScript> ();
 		rb = Player.GetComponent<Rigidbody2D> ();
 		minJump = 2f;
 		jumpPressure = 0f;
@@ -55,11 +58,13 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
+		PM.SpawnPijakan ();
 		hold = false;
 		Player.transform.rotation = forwardRotation;
 		if (jumpPressure > 0) {
 			jumpPressure = jumpPressure + minJump;
-			rb.velocity = new Vector2 (jumpPressure/2f, jumpPressure);
+//			rb.velocity = new Vector2 (jumpPressure/2f, jumpPressure);
+			rb.velocity = new Vector2 (0f, jumpPressure);
 			jumpPressure = 0;
 			Player.GetComponent<PlayerScript> ().OnGround = false;
 		}

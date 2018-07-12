@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 	private bool onGround;
-
+	private Quaternion standRotation;
 
 	// Use this for initialization
 	void Start () {
 		onGround = true;
+		standRotation = Quaternion.Euler (0f,0f,0f);
 	}
 	
 	// Update is called once per frame
@@ -19,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.CompareTag ("Ground")) {
 			onGround = true;
+			this.transform.rotation = standRotation;
 		}
 	}
 
