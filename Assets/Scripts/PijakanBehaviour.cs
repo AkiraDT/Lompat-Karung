@@ -14,7 +14,7 @@ public class PijakanBehaviour : MonoBehaviour {
 		if (col.gameObject.CompareTag ("Player")) {
 			if (firstLand) {
 				firstLand = false;
-
+				GameControlScript.Instance.Score++;
 			}
 		}
 	}

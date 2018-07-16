@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 1874801269}
   - component: {fileID: 1874801268}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: TextScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,6 +1039,11 @@ Prefab:
       propertyPath: scrollSpeed
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 114667109342456666, guid: 9af3ab98a056f17438e70548e0dcf0cb,
+        type: 2}
+      propertyPath: ScoreHolder
+      value: 
+      objectReference: {fileID: 1833856195}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9af3ab98a056f17438e70548e0dcf0cb, type: 2}
   m_IsPrefabParent: 0
