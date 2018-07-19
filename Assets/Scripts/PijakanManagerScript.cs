@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PijakanManagerScript : MonoBehaviour {
-	public GameObject PijakanPrefab;
-	public int pijakanSize = 6;
+	public GameObject[] PijakanPrefab;
+	public int pijakanSize = 3;
 	public float spawnRate = 4f;
 	public float pijakanXMin = 5f;
 	public float pijakanXMax = 7f;
@@ -23,7 +23,7 @@ public class PijakanManagerScript : MonoBehaviour {
 		float xPos = -15f;
 		for(int i = 0; i<pijakanSize; i++){
 			Vector2 pijakanPosition = new Vector2 (xPos,-25f);
-			Pijakans [i] = (GameObject)Instantiate (PijakanPrefab, pijakanPosition, Quaternion.identity);
+			Pijakans [i] = (GameObject)Instantiate (PijakanPrefab[i], pijakanPosition, Quaternion.identity);
 			xPos += 5f;
 		}
 	}

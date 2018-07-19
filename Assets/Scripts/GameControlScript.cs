@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class GameControlScript : MonoBehaviour {
 
 	public static GameControlScript Instance;
-	public float scrollSpeed = -10f;
+	public float scrollSpeed;
 	public GameObject ScoreHolder;
+	public float BGScrollSpeed;
 
 	private Text ScoreText;
 	private int score;

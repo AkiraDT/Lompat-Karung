@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Space
   - DeathZone
+  - BackGround
   layers:
   - Default
   - TransparentFX
