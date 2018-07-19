@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour {
 		if (col.gameObject.CompareTag ("Ground")) {
 			onGround = true;
 			this.transform.rotation = standRotation;
+
+			PijakanManagerScript.Instance.SpawnPijakan ();
 		}
 	}
 

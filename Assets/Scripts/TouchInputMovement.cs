@@ -58,7 +58,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
-		PM.SpawnPijakan ();
+		//PM.SpawnPijakan ();
 		hold = false;
 		Player.transform.rotation = forwardRotation;
 		if (jumpPressure > 0) {

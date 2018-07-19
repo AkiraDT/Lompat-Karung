@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PijakanManagerScript : MonoBehaviour {
+	public static PijakanManagerScript Instance;
+
 	public GameObject[] PijakanPrefab;
-	public int pijakanSize = 3;
 	public float spawnRate = 4f;
-	public float pijakanXMin = 5f;
-	public float pijakanXMax = 7f;
-	public float pijakanYMin = -5f;
-	public float pijakanYMax = -3f;
 
-
+	private float pijakanXMin = 5f;
+	private float pijakanXMax = 7.5f;
+	private float pijakanYMin = -5f;
+	private float pijakanYMax = -3f;
+	private GameObject LastPijakan;
 	private GameObject[] Pijakans;
 	private float timeIntervalSpawn;
 	//private float spawnXpos = 5f;
@@ -19,32 +20,26 @@ public class PijakanManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Pijakans = new GameObject[pijakanSize];
-		float xPos = -15f;
-		for(int i = 0; i<pijakanSize; i++){
-			Vector2 pijakanPosition = new Vector2 (xPos,25f);
-			Pijakans [i] = (GameObject)Instantiate (PijakanPrefab[i], pijakanPosition, Quaternion.identity);
-			xPos += 5f;
+		if (Instance == null) {
+			Instance = this;
+		}else if (Instance != this) {
+			Destroy (gameObject);
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//timeIntervalSpawn += Time.deltaTime;
-
-		//if(timeIntervalSpawn >= spawnRate){
-		//SpawnPijakan();
-		//}
 	}
 
 	public void SpawnPijakan(){
 		//timeIntervalSpawn = 0f;
 		float spawnYpos = Random.Range (pijakanYMin, pijakanYMax);
 		float spawnXpos = Random.Range (pijakanXMin, pijakanXMax);
-		Pijakans [currentPijakan].transform.position = new Vector2 (spawnXpos, spawnYpos);
-		currentPijakan++;
-		if (currentPijakan >= pijakanSize) {
-			currentPijakan = 0;
+		Vector2 pijakanPosition;
+
+		if (LastPijakan != null) {
+			pijakanPosition = new Vector2 (LastPijakan.transform.position.x + spawnXpos, spawnYpos);
+		} else {
+			pijakanPosition = new Vector2 (5f, spawnYpos);
 		}
+
+		LastPijakan = (GameObject) Instantiate (PijakanPrefab[currentPijakan], pijakanPosition, Quaternion.identity);
+
 	}
 }
