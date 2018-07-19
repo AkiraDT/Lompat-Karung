@@ -28,7 +28,8 @@ public class PijakanManagerScript : MonoBehaviour {
 	}
 
 	public void SpawnPijakan(){
-		//timeIntervalSpawn = 0f;
+		currentPijakan = Random.Range (0, PijakanPrefab.Length);
+
 		float spawnYpos = Random.Range (pijakanYMin, pijakanYMax);
 		float spawnXpos = Random.Range (pijakanXMin, pijakanXMax);
 		Vector2 pijakanPosition;
