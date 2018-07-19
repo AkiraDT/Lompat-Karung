@@ -22,7 +22,7 @@ public class PijakanManagerScript : MonoBehaviour {
 		Pijakans = new GameObject[pijakanSize];
 		float xPos = -15f;
 		for(int i = 0; i<pijakanSize; i++){
-			Vector2 pijakanPosition = new Vector2 (xPos,-25f);
+			Vector2 pijakanPosition = new Vector2 (xPos,25f);
 			Pijakans [i] = (GameObject)Instantiate (PijakanPrefab[i], pijakanPosition, Quaternion.identity);
 			xPos += 5f;
 		}

@@ -51,4 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6b40b6afca04c4b86e71c33482d8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -1.5
+  scrollSpeed: -4
+  ScoreHolder1: {fileID: 0}
+  ScoreHolder2: {fileID: 0}
+  HighScoreHolder: {fileID: 0}
+  BGScrollSpeed: -4
+  GameState:
+  - {fileID: 0}
+  - {fileID: 0}
