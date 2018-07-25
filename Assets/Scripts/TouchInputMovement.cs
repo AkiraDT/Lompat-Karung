@@ -49,24 +49,29 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		if (!Player.GetComponent<PlayerScript> ().OnGround) {
 			Player.transform.rotation = Quaternion.Lerp (Player.transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
 		}
+		
 	}
 
 	//ketika menyentuh layar
 	public virtual void OnPointerDown(PointerEventData ped){
-		hold = true;
+		if (GameControlScript.Instance.IsGameOn) {
+			hold = true;
+		}
 	}
 
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
-		hold = false;
-		Player.transform.rotation = forwardRotation;
-		if (jumpPressure > 0) {
-			jumpPressure = jumpPressure + minJump;
+		if (GameControlScript.Instance.IsGameOn) {
+			hold = false;
+			Player.transform.rotation = forwardRotation;
+			if (jumpPressure > 0) {
+				jumpPressure = jumpPressure + minJump;
 //			rb.velocity = new Vector2 (jumpPressure/2f, jumpPressure);
-			rb.velocity = new Vector2 (0f, jumpPressure);
-			jumpPressure = 0;
-			Player.GetComponent<PlayerScript> ().OnGround = false;
+				rb.velocity = new Vector2 (0f, jumpPressure);
+				jumpPressure = 0;
+				Player.GetComponent<PlayerScript> ().OnGround = false;
+			}
 		}
 	}
 }

@@ -15,11 +15,13 @@ public class GameControlScript : MonoBehaviour {
 	public float BGScrollSpeed;
 	public GameObject[] GameState;
 
+	public float countDownTimer = 10.5f;
 
 	private Text ScoreText1;
 	private Text ScoreText2;
 	private Text HighScoreText;
 	private int score;
+	private bool isGameOn;
 
 	// Use this for initialization
 	void Awake () {
@@ -31,6 +33,7 @@ public class GameControlScript : MonoBehaviour {
 	}
 
 	void Start(){
+		isGameOn = true;
 		if(ScoreHolder1 != null)
 			ScoreText1 = ScoreHolder1.GetComponent<Text> ();
 
@@ -67,6 +70,7 @@ public class GameControlScript : MonoBehaviour {
 		GameState [0].SetActive (false);
 		GameState [1].SetActive (true);
 		SaveHighScore ();
+		isGameOn = false;
 	}
 
 	public void SaveHighScore(){
@@ -80,5 +84,14 @@ public class GameControlScript : MonoBehaviour {
 
 	public void TryAgain(){
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+	}
+
+	public bool IsGameOn{
+		get{
+			return isGameOn;
+		}
+		set{
+			isGameOn = value;
+		}
 	}
 }
