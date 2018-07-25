@@ -9,7 +9,6 @@ public class cameraRunnerScript : MonoBehaviour {
 	private Rigidbody2D rb;
 
 	void Start(){
-		Screen.orientation = ScreenOrientation.Landscape;
 		PS = GameObject.FindObjectOfType<PlayerScript>();
 		rb = GetComponent<Rigidbody2D> ();
 	}
