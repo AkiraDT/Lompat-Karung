@@ -8,6 +8,9 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Screen.orientation = ScreenOrientation.Landscape;
+		if (SceneManager.GetActiveScene ().name == "HowToPlayScene" && PlayerPrefs.GetInt("IsFirstPlayed") != 1) {
+			PlayerPrefs.SetInt ("IsFirstPlayed",1);
+		}
 	}
 	
 	// Update is called once per frame
@@ -16,9 +19,9 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void LoadLevel(string sceneName){
-		if(name.Contains("MainMenuScene")){
+		if(sceneName.Contains("MainGameScene")){
 			if(PlayerPrefs.GetInt("IsFirstPlayed") != 1){
-				sceneName = "HowToPlayeScene";
+				sceneName = "HowToPlayScene";
 			}
 		}
 
