@@ -65,6 +65,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		if (GameControlScript.Instance.IsGameOn) {
 			hold = false;
 			Player.transform.rotation = forwardRotation;
+			GameControlScript.Instance.scrollSpeed = -jumpPressure;
 			if (jumpPressure > 0) {
 				jumpPressure = jumpPressure + minJump;
 //			rb.velocity = new Vector2 (jumpPressure/2f, jumpPressure);

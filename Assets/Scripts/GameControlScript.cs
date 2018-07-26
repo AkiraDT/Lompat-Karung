@@ -56,6 +56,8 @@ public class GameControlScript : MonoBehaviour {
 			else
 				ScoreText1.text = score.ToString ();
 		}
+
+		BGScrollSpeed = scrollSpeed - 2;
 	}
 
 	public int Score{

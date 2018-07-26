@@ -10,16 +10,27 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		/*
+		if (this.CompareTag ("BackGround")) {
+			scrollSpeed = GameControlScript.Instance.BGScrollSpeed;
+		} else {
+			scrollSpeed = GameControlScript.Instance.scrollSpeed;
+		}
+		*/
+
+		PS = GameObject.FindObjectOfType<PlayerScript>();
+		rb = GetComponent<Rigidbody2D> ();
+	}
+
+	void FixedUpdate(){
 		if (this.CompareTag ("BackGround")) {
 			scrollSpeed = GameControlScript.Instance.BGScrollSpeed;
 		} else {
 			scrollSpeed = GameControlScript.Instance.scrollSpeed;
 		}
 
-		PS = GameObject.FindObjectOfType<PlayerScript>();
-		rb = GetComponent<Rigidbody2D> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (!PS.OnGround) {
