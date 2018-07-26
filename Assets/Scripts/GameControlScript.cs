@@ -45,6 +45,7 @@ public class GameControlScript : MonoBehaviour {
 		score = -1;
 
 		GameState [1].SetActive (false);
+		GameState [2].SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -71,6 +72,18 @@ public class GameControlScript : MonoBehaviour {
 		GameState [1].SetActive (true);
 		SaveHighScore ();
 		isGameOn = false;
+	}
+
+	public void Pause(){
+		GameState [0].SetActive (false);
+		GameState [2].SetActive (true);
+		isGameOn = false;
+	}
+
+	public void Resume(){
+		GameState [0].SetActive (true);
+		GameState [2].SetActive (false);
+		isGameOn = true;
 	}
 
 	public void SaveHighScore(){
