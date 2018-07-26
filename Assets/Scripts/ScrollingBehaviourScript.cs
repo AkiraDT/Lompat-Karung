@@ -23,20 +23,34 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (this.CompareTag ("BackGround")) {
-			scrollSpeed = GameControlScript.Instance.BGScrollSpeed;
-		} else {
+		//if (this.CompareTag ("BackGround")) {
+		//	scrollSpeed = GameControlScript.Instance.BGScrollSpeed;
+		//} else {
 			scrollSpeed = GameControlScript.Instance.scrollSpeed;
-		}
+		//}
 
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (!PS.OnGround) {
-			rb.velocity = new Vector2 (scrollSpeed, 0f);
-		} else {
-			rb.velocity = Vector2.zero;
+		if (GameControlScript.Instance.IsGameOn) {
+			//For Parallax
+			if (this.CompareTag ("BackGround")) {
+				if (GameControlScript.Instance.IsBGMove) {
+					rb.velocity = new Vector2 (scrollSpeed - 1f, 0f);
+				} else if (!PS.OnGround) {
+					rb.velocity = new Vector2 (scrollSpeed, 0f);
+				} else {
+					rb.velocity = Vector2.zero;
+				}
+
+			} else {
+				if (!PS.OnGround) {
+					rb.velocity = new Vector2 (scrollSpeed, 0f);
+				} else {
+					rb.velocity = Vector2.zero;
+				}
+			}
 		}
 	}
 }

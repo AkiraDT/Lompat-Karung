@@ -12,7 +12,7 @@ public class GameControlScript : MonoBehaviour {
 	public GameObject ScoreHolder2;
 	public GameObject HighScoreHolder;
 
-	public float BGScrollSpeed;
+	//public float BGScrollSpeed;
 	public GameObject[] GameState;
 
 	public float countDownTimer = 10.5f;
@@ -22,6 +22,7 @@ public class GameControlScript : MonoBehaviour {
 	private Text HighScoreText;
 	private int score;
 	private bool isGameOn;
+	private bool isBGMove;
 
 	// Use this for initialization
 	void Awake () {
@@ -34,6 +35,7 @@ public class GameControlScript : MonoBehaviour {
 
 	void Start(){
 		isGameOn = true;
+		IsBGMove = false;
 		if(ScoreHolder1 != null)
 			ScoreText1 = ScoreHolder1.GetComponent<Text> ();
 
@@ -57,7 +59,7 @@ public class GameControlScript : MonoBehaviour {
 				ScoreText1.text = score.ToString ();
 		}
 
-		BGScrollSpeed = scrollSpeed - 2;
+		//BGScrollSpeed = scrollSpeed - 2;
 	}
 
 	public int Score{
@@ -107,6 +109,15 @@ public class GameControlScript : MonoBehaviour {
 		}
 		set{
 			isGameOn = value;
+		}
+	}
+
+	public bool IsBGMove{
+		get{
+			return isBGMove;
+		}
+		set{
+			isBGMove = value;
 		}
 	}
 }
