@@ -11,12 +11,13 @@ public class GameControlScript : MonoBehaviour {
 	public GameObject ScoreHolder1;
 	public GameObject ScoreHolder2;
 	public GameObject HighScoreHolder;
-
 	//public float BGScrollSpeed;
 	public GameObject[] GameState;
 
 	public float countDownTimer = 10.5f;
+	private float countDownTimerT;
 
+	private PlayerScript PS;
 	private Text ScoreText1;
 	private Text ScoreText2;
 	private Text HighScoreText;
@@ -34,6 +35,8 @@ public class GameControlScript : MonoBehaviour {
 	}
 
 	void Start(){
+		countDownTimerT = countDownTimer;
+		PS = GameObject.FindObjectOfType<PlayerScript>();
 		isGameOn = true;
 		IsBGMove = false;
 		if(ScoreHolder1 != null)
@@ -59,6 +62,11 @@ public class GameControlScript : MonoBehaviour {
 				ScoreText1.text = score.ToString ();
 		}
 
+		if (PS != null) {
+			if (PS.OnGround) {
+				countDownTimer -= Time.deltaTime;
+			}
+		}
 		//BGScrollSpeed = scrollSpeed - 2;
 	}
 
@@ -119,5 +127,9 @@ public class GameControlScript : MonoBehaviour {
 		set{
 			isBGMove = value;
 		}
+	}
+
+	public void ResetTimer(){
+		countDownTimer = countDownTimerT;
 	}
 }

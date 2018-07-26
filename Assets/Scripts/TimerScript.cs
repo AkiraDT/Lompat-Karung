@@ -5,22 +5,17 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour {
 
-	float count;
-	private PlayerScript PS;
+	private float count;
 	private Text displayText;
 
 	// Use this for initialization
 	void Start () {
-		count = GameControlScript.Instance.countDownTimer;
-		PS = GameObject.FindObjectOfType<PlayerScript>();
 		displayText = GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(PS.OnGround){
-			count -= Time.deltaTime;
-		}
+		count = GameControlScript.Instance.countDownTimer;
 
 		displayText.text = Mathf.Round (count).ToString ();
 

@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour {
 			this.transform.rotation = standRotation;
 
 			PijakanManagerScript.Instance.SpawnPijakan ();
+			GameControlScript.Instance.ResetTimer ();
 		}
 	}
 
