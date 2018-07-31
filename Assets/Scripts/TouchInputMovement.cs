@@ -54,7 +54,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	//ketika menyentuh layar
 	public virtual void OnPointerDown(PointerEventData ped){
-		if (GameControlScript.Instance.IsGameOn) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround) {
 			hold = true;
 		}
 	}
@@ -62,7 +62,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
-		if (GameControlScript.Instance.IsGameOn) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround) {
 			hold = false;
 			Player.transform.rotation = forwardRotation;
 			GameControlScript.Instance.scrollSpeed = -jumpPressure;

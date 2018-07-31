@@ -36,7 +36,7 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 		if (GameControlScript.Instance.IsGameOn) {
 			//For Parallax
 			if (this.CompareTag ("BackGround")) {
-				if (GameControlScript.Instance.IsBGMove) {
+				if (GameControlScript.Instance.IsBGMove && GameControlScript.Instance.IsGameOn) {
 					rb.velocity = new Vector2 (scrollSpeed - 1f, 0f);
 				} else if (!PS.OnGround) {
 					rb.velocity = new Vector2 (scrollSpeed, 0f);
