@@ -48,9 +48,9 @@ TagManager:
   - name: BackGround
     uniqueID: 4096654563
     locked: 0
-  - name: Player
-    uniqueID: 2620628917
-    locked: 0
   - name: Pijakan
     uniqueID: 2474627247
+    locked: 0
+  - name: Player
+    uniqueID: 2620628917
     locked: 0

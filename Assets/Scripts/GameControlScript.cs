@@ -68,6 +68,14 @@ public class GameControlScript : MonoBehaviour {
 			}
 		}
 		//BGScrollSpeed = scrollSpeed - 2;
+
+		/*
+		if (!isGameOn) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
+		*/
 	}
 
 	public int Score{
