@@ -63,7 +63,7 @@ public class GameControlScript : MonoBehaviour {
 		}
 
 		if (PS != null) {
-			if (PS.OnGround) {
+			if (PS.OnGround && isGameOn) {
 				countDownTimer -= Time.deltaTime;
 			}
 		}
