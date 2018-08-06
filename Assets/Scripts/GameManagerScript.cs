@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
-
+	GameObject[] CanvasObject = new GameObject[2];
 	// Use this for initialization
 	void Start () {
+		CanvasObject[0] = GameObject.Find ("Canvas");
+		CanvasObject[1] = GameObject.Find ("Option");
+
+		if (CanvasObject [1] != null) {
+			CanvasObject [1].SetActive (false);
+		}
 		Screen.orientation = ScreenOrientation.Landscape;
 		if (SceneManager.GetActiveScene ().name == "HowToPlayScene" && PlayerPrefs.GetInt("IsFirstPlayed") != 1) {
 			PlayerPrefs.SetInt ("IsFirstPlayed",1);
@@ -30,5 +36,15 @@ public class GameManagerScript : MonoBehaviour {
 
 	public void QuitRequest(){
 		Application.Quit ();
+	}
+		
+	public void OptionON(){
+		CanvasObject[0].SetActive (false);
+		CanvasObject[1].SetActive (true);
+	}
+
+	public void OptionOFF(){
+		CanvasObject[0].SetActive (true);
+		CanvasObject[1].SetActive (false);
 	}
 }
