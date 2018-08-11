@@ -32,12 +32,13 @@ public class GameControlScript : MonoBehaviour {
 		} else if (Instance != this) {
 			Destroy (gameObject);
 		}
+		isGameOn = true;
+		Time.timeScale = 1;
 	}
 
 	void Start(){
 		countDownTimerT = countDownTimer;
 		PS = GameObject.FindObjectOfType<PlayerScript>();
-		isGameOn = true;
 		IsBGMove = false;
 		if(ScoreHolder1 != null)
 			ScoreText1 = ScoreHolder1.GetComponent<Text> ();
@@ -69,13 +70,6 @@ public class GameControlScript : MonoBehaviour {
 		}
 		//BGScrollSpeed = scrollSpeed - 2;
 
-		/*
-		if (!isGameOn) {
-			Time.timeScale = 0;
-		} else {
-			Time.timeScale = 1;
-		}
-		*/
 	}
 
 	public int Score{
@@ -90,20 +84,24 @@ public class GameControlScript : MonoBehaviour {
 	public void GameOver(){
 		GameState [0].SetActive (false);
 		GameState [1].SetActive (true);
+		GameState [2].SetActive (false);
 		SaveHighScore ();
 		isGameOn = false;
+		Time.timeScale = 0;
 	}
 
 	public void Pause(){
 		GameState [0].SetActive (false);
 		GameState [2].SetActive (true);
 		isGameOn = false;
+		Time.timeScale = 0;
 	}
 
 	public void Resume(){
 		GameState [0].SetActive (true);
 		GameState [2].SetActive (false);
 		isGameOn = true;
+		Time.timeScale = 1;
 	}
 
 	public void SaveHighScore(){
