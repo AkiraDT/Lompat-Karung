@@ -14,13 +14,15 @@ public class SoundScript : MonoBehaviour {
 	private MusicPlayer m_MusicPlayer;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		m_MusicPlayer = GameObject.FindObjectOfType<MusicPlayer> ();
+		UpdateIcon ();
 	}
 
 
 	public void ToggleButton(){			//Ketika tombol di klik
 		m_MusicPlayer.ToggleSound ();
+		UpdateIcon ();
 	}
 
 	public void UpdateIcon(){		//icon button diubah

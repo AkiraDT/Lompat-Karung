@@ -299,6 +299,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &580075318
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 141.01279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 110.54283
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529586893361896, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489331173862386, guid: 3724c1399d8e2574496c8b2caa8c28e1,
+        type: 2}
+      propertyPath: MusicToggleButton
+      value: 
+      objectReference: {fileID: 769228173}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &580075319 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114489331173862386, guid: 3724c1399d8e2574496c8b2caa8c28e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 580075318}
+  m_Script: {fileID: 11500000, guid: 45672c4292c6f0c49b379dba74786bd7, type: 3}
 --- !u!1 &635481423
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +536,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 769228176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 580075319}
+        m_MethodName: ToggleButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &769228176
