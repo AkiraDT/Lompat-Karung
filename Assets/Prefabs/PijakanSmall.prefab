@@ -98,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 1629288093839228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.19, z: -0.020000001}
-  m_LocalScale: {x: 0.48, y: 0.49, z: 0.3250251}
+  m_LocalScale: {x: 1.143675, y: 2.8113737, z: 0.3250251}
   m_Children: []
   m_Father: {fileID: 4582745199602476}
   m_RootOrder: 2
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1841948844065806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.695704, y: -3.7118683, z: 0}
+  m_LocalPosition: {x: -13.760878, y: -3.8362403, z: 0}
   m_LocalScale: {x: 0.72009295, y: 0.7200929, z: 0.7200929}
   m_Children:
   - {fileID: 4068162014399940}
@@ -200,7 +200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.37, y: 11.13}
+  m_Size: {x: 2.02, y: 11.13}
   m_EdgeRadius: 0
 --- !u!114 &114329117326456914
 MonoBehaviour:
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localScrollSpeed: 0
 --- !u!212 &212372170822654522
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -256,9 +257,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1820340049
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3b3d61f30b5e49c419b4a77760264c28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb0baf56d6ea20a4cac683a3bf59ea20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

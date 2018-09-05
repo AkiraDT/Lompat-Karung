@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScrollingBehaviourScript : MonoBehaviour {
+	public float localScrollSpeed;
 
 	private PlayerScript PS;
 	private Rigidbody2D rb;
@@ -37,7 +38,7 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 			//For Parallax
 			if (this.CompareTag ("BackGround")) {
 				if (GameControlScript.Instance.IsBGMove && GameControlScript.Instance.IsGameOn) {
-					rb.velocity = new Vector2 (scrollSpeed - 1f, 0f);
+					rb.velocity = new Vector2 (scrollSpeed - localScrollSpeed, 0f);
 				} else if (!PS.OnGround) {
 					rb.velocity = new Vector2 (scrollSpeed, 0f);
 				} else {

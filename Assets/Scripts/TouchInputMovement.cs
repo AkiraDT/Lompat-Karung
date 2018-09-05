@@ -19,12 +19,13 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	private Quaternion downRotation;
 	private Quaternion forwardRotation;
-
+	private Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
+		anim = Player.GetComponentInChildren<Animator> ();
 		PM = GameObject.FindObjectOfType<PijakanManagerScript> ();
 		rb = Player.GetComponent<Rigidbody2D> ();
 		minJump = 2f;
@@ -63,6 +64,8 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround) {
+			anim.Play("JumpAnimation");
+
 			hold = false;
 			Player.transform.rotation = forwardRotation;
 			GameControlScript.Instance.scrollSpeed = -jumpPressure;

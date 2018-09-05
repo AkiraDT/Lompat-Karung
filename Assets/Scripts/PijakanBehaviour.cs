@@ -15,6 +15,7 @@ public class PijakanBehaviour : MonoBehaviour {
 			if (firstLand) {
 				firstLand = false;
 				GameControlScript.Instance.Score++;
+				GameControlScript.Instance.ResetTimer ();
 			}
 		}
 	}

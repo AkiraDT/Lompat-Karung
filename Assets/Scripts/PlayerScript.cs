@@ -6,11 +6,9 @@ public class PlayerScript : MonoBehaviour {
 	private bool onGround;
 	private Quaternion standRotation;
 	private Rigidbody2D rb;
-	private bool isFirstLand;
 
 	// Use this for initialization
 	void Start () {
-		isFirstLand = true;
 		onGround = true;
 		standRotation = Quaternion.Euler (0f,0f,0f);
 		rb = GetComponent<Rigidbody2D> ();
@@ -30,10 +28,6 @@ public class PlayerScript : MonoBehaviour {
 			this.transform.rotation = standRotation;
 
 			PijakanManagerScript.Instance.SpawnPijakan ();
-			if (isFirstLand) {
-				GameControlScript.Instance.ResetTimer ();
-				isFirstLand = false;
-			}
 		}
 	}
 
