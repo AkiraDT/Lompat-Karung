@@ -45,7 +45,16 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 					rb.velocity = Vector2.zero;
 				}
 
-			} else {
+			}
+			else if(this.CompareTag ("ContinousBG")){
+				rb.velocity = Vector2.zero;
+				if (!PS.OnGround) {
+					rb.velocity = new Vector2 (- Mathf.Abs(scrollSpeed) - localScrollSpeed, 0f);
+				} else {
+					rb.velocity = new Vector2 (-localScrollSpeed, 0f);
+				}
+			} 
+			else {
 				if (!PS.OnGround) {
 					rb.velocity = new Vector2 (scrollSpeed, 0f);
 				} else {
