@@ -38,7 +38,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	void Update(){
 		if (hold) {
-			if (Player.GetComponent<PlayerScript> ().OnGround) {
+			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
 				//if (jumpPressure < maxJumpPressure) {
 				jumpPressure += Time.deltaTime * 10f;
 				//} else {
@@ -55,7 +55,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	//ketika menyentuh layar
 	public virtual void OnPointerDown(PointerEventData ped){
-		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
 			hold = true;
 		}
 	}
@@ -63,7 +63,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
-		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
 			anim.Play("JumpAnimation");
 
 			hold = false;
