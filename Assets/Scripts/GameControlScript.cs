@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameControlScript : MonoBehaviour {
 
@@ -18,9 +19,9 @@ public class GameControlScript : MonoBehaviour {
 	private float countDownTimerT;
 
 	private PlayerScript PS;
-	private Text ScoreText1;
-	private Text ScoreText2;
-	private Text HighScoreText;
+	private TextMeshProUGUI ScoreText1;
+	private TextMeshProUGUI ScoreText2;
+	private TextMeshProUGUI HighScoreText;
 	private int score;
 	private bool isGameOn;
 	private bool isBGMove;
@@ -41,13 +42,13 @@ public class GameControlScript : MonoBehaviour {
 		PS = GameObject.FindObjectOfType<PlayerScript>();
 		IsBGMove = false;
 		if(ScoreHolder1 != null)
-			ScoreText1 = ScoreHolder1.GetComponent<Text> ();
+			ScoreText1 = ScoreHolder1.GetComponent<TextMeshProUGUI> ();
 
 		if(ScoreHolder2 != null)
-			ScoreText2 = ScoreHolder2.GetComponent<Text> ();
+			ScoreText2 = ScoreHolder2.GetComponent<TextMeshProUGUI> ();
 
 		if(HighScoreHolder != null)
-			HighScoreText = HighScoreHolder.GetComponent<Text> ();
+			HighScoreText = HighScoreHolder.GetComponent<TextMeshProUGUI> ();
 		score = -1;
 
 		GameState [1].SetActive (false);
@@ -64,7 +65,7 @@ public class GameControlScript : MonoBehaviour {
 		}
 
 		if (PS != null) {
-			if (PS.OnGround && isGameOn) {
+			if (PS.OnGround && isGameOn && !isBGMove) {
 				countDownTimer -= Time.deltaTime;
 			}
 		}

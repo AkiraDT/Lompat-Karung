@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimerScript : MonoBehaviour {
 
 	private float count;
-	private Text displayText;
+	private TextMeshProUGUI displayText;
 
 	// Use this for initialization
 	void Start () {
-		displayText = GetComponent<Text> ();
+		displayText = GetComponent<TextMeshProUGUI> ();
 	}
 	
 	// Update is called once per frame
