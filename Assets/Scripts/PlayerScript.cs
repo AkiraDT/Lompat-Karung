@@ -11,12 +11,10 @@ public class PlayerScript : MonoBehaviour {
 
 	private UnityArmatureComponent armature;
 	private string idleAnimation = "idle";
-
-	private string jumpAnimation = "jump";
-	private string onAirAnimation = "on_air";
-	private string prepareLandingAnimation = "prepare_landing";
 	private string landingAnimation = "landing";
 
+	private float timerAnimationToIdle = 0.75f;
+	private bool isLanding = false;
 	// Use this for initialization
 	void Start () {
 		onGround = true;
@@ -32,6 +30,15 @@ public class PlayerScript : MonoBehaviour {
 		}
 		else
 			rb.freezeRotation = true;
+
+		if (isLanding) {
+			timerAnimationToIdle -= Time.deltaTime;
+			if (timerAnimationToIdle <= 0) {
+				armature.animation.FadeIn (idleAnimation,-0.25f,-1);
+				timerAnimationToIdle = 0.75f;
+				isLanding = false;
+			}
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
@@ -41,7 +48,7 @@ public class PlayerScript : MonoBehaviour {
 
 			PijakanManagerScript.Instance.SpawnPijakan ();
 			armature.animation.Play (landingAnimation,1);
-			//armature.animation.FadeIn(idleAnimation, 0.25f,-1);
+			isLanding = true;
 		}
 	}
 
