@@ -1,23 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DragonBones;
 
 public class PlayerScript : MonoBehaviour {
 	private bool onGround;
 	private Quaternion standRotation;
 	private Rigidbody2D rb;
 
+
+	private UnityArmatureComponent armature;
+	private string idleAnimation = "idle";
+
+	private string jumpAnimation = "jump";
+	private string onAirAnimation = "on_air";
+	private string prepareLandingAnimation = "prepare_landing";
+	private string landingAnimation = "landing";
+
 	// Use this for initialization
 	void Start () {
 		onGround = true;
 		standRotation = Quaternion.Euler (0f,0f,0f);
 		rb = GetComponent<Rigidbody2D> ();
+		armature = GetComponentInChildren<UnityArmatureComponent> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(onGround)
+		if (onGround) {
 			rb.freezeRotation = false;
+		}
 		else
 			rb.freezeRotation = true;
 	}
@@ -28,6 +40,8 @@ public class PlayerScript : MonoBehaviour {
 			this.transform.rotation = standRotation;
 
 			PijakanManagerScript.Instance.SpawnPijakan ();
+			armature.animation.Play (landingAnimation,1);
+			//armature.animation.FadeIn(idleAnimation, 0.25f,-1);
 		}
 	}
 

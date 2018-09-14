@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DragonBones;
 
 public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
 	//Untuk mengontrol player
@@ -19,13 +20,21 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	private Quaternion downRotation;
 	private Quaternion forwardRotation;
-	private Animator anim;
+
+
+	private UnityArmatureComponent armature;		
+	private string idleAnimation = "idle";
+	private string prepareChargeAnimation = "prepare_charge";
+	private string chargeAnimation = "charge";
+	private string jumpAnimation = "jump";
+	private string onAirAnimation = "on_air";
+	private string prepareLandingAnimation = "prepare_landing";
+	private string landingAnimation = "landing";
 
 	// Use this for initialization
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
-		anim = Player.GetComponentInChildren<Animator> ();
 		PM = GameObject.FindObjectOfType<PijakanManagerScript> ();
 		rb = Player.GetComponent<Rigidbody2D> ();
 		minJump = 2f;
@@ -34,6 +43,8 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 		downRotation = Quaternion.Euler (0f,0f,-90f);
 		forwardRotation = Quaternion.Euler (0f,0f,35f);
+
+		armature = Player.GetComponentInChildren<UnityArmatureComponent> ();
 	}
 
 	void Update(){
@@ -48,7 +59,8 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		}
 
 		if (!Player.GetComponent<PlayerScript> ().OnGround) {
-			Player.transform.rotation = Quaternion.Lerp (Player.transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
+			//Player.transform.rotation = Quaternion.Lerp (Player.transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
+
 		}
 		
 	}
@@ -57,6 +69,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	public virtual void OnPointerDown(PointerEventData ped){
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
 			hold = true;
+
+			armature.animation.Play(prepareChargeAnimation,1);
+			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
 		}
 	}
 
@@ -64,10 +79,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
-			anim.Play("JumpAnimation");
 
 			hold = false;
-			Player.transform.rotation = forwardRotation;
+			//Player.transform.rotation = forwardRotation;
 			GameControlScript.Instance.scrollSpeed = -jumpPressure;
 			if (jumpPressure > 0) {
 				jumpPressure = jumpPressure + minJump;
@@ -76,6 +90,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				jumpPressure = 0;
 				Player.GetComponent<PlayerScript> ().OnGround = false;
 			}
+			armature.animation.FadeIn (jumpAnimation,-1,1);
+			armature.animation.FadeIn (onAirAnimation,0.25f,1);
+			armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 		}
 	}
 }
