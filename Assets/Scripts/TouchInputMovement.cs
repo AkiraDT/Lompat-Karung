@@ -37,7 +37,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		Player = GameObject.Find ("Player");
 		PM = GameObject.FindObjectOfType<PijakanManagerScript> ();
 		rb = Player.GetComponent<Rigidbody2D> ();
-		minJump = 2f;
+		minJump = 0f;
 		jumpPressure = 0f;
 		maxJumpPressure = 10f;
 
@@ -51,10 +51,12 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		if (hold) {
 			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
 				//if (jumpPressure < maxJumpPressure) {
-				jumpPressure += Time.deltaTime * 10f;
+				jumpPressure += Time.deltaTime * 5f;
 				//} else {
 				//jumpPressure = maxJumpPressure;
 				//}
+
+				Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = jumpPressure;
 			}
 		}
 
@@ -79,9 +81,10 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
-
 			hold = false;
 			//Player.transform.rotation = forwardRotation;
+			jumpPressure/=1.3f;
+
 			GameControlScript.Instance.scrollSpeed = -jumpPressure;
 			if (jumpPressure > 0) {
 				jumpPressure = jumpPressure + minJump;
@@ -93,6 +96,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			armature.animation.FadeIn (jumpAnimation,-1,1);
 			armature.animation.FadeIn (onAirAnimation,0.25f,1);
 			armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
+			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
 		}
 	}
 }

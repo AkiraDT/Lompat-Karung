@@ -50,6 +50,7 @@ public class PlayerScript : MonoBehaviour {
 			armature.animation.Play (landingAnimation,1);
 			isLanding = true;
 		}
+			
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
