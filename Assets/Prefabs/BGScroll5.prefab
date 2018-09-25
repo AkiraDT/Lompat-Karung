@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScrollSpeed: -30
+  localScrollSpeed: -0.5
 --- !u!114 &114348713736864886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScrollSpeed: -30
+  localScrollSpeed: -0.5
 --- !u!114 &114606420774376184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScrollSpeed: -30
+  localScrollSpeed: -0.5
 --- !u!212 &212079633874748050
 SpriteRenderer:
   m_ObjectHideFlags: 1
