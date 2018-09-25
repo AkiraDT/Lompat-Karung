@@ -51,7 +51,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		if (hold) {
 			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
 				//if (jumpPressure < maxJumpPressure) {
-				jumpPressure += Time.deltaTime * 5f;
+				jumpPressure += Time.deltaTime * 9f;
 				//} else {
 				//jumpPressure = maxJumpPressure;
 				//}
@@ -97,6 +97,12 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			armature.animation.FadeIn (onAirAnimation,0.25f,1);
 			armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
+		}
+	}
+
+	public bool Hold{
+		get{
+			return hold;
 		}
 	}
 }

@@ -15,25 +15,27 @@ public class PlayerScript : MonoBehaviour {
 
 	private float timerAnimationToIdle = 0.75f;
 	private bool isLanding = false;
+	private TouchInputMovement TIM;	//buat supaya pas udah neken, ga kepanggil idlenya
 	// Use this for initialization
 	void Start () {
 		onGround = true;
 		standRotation = Quaternion.Euler (0f,0f,0f);
 		rb = GetComponent<Rigidbody2D> ();
 		armature = GetComponentInChildren<UnityArmatureComponent> ();
+		TIM = FindObjectOfType<TouchInputMovement> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (onGround) {
 			rb.freezeRotation = false;
-		}
-		else
+		} else {
 			rb.freezeRotation = true;
-
+			isLanding = false;
+		}
 		if (isLanding) {
 			timerAnimationToIdle -= Time.deltaTime;
-			if (timerAnimationToIdle <= 0) {
+			if (timerAnimationToIdle <= 0 && !TIM.Hold) {
 				armature.animation.FadeIn (idleAnimation,-0.25f,-1);
 				timerAnimationToIdle = 0.75f;
 				isLanding = false;
@@ -49,6 +51,7 @@ public class PlayerScript : MonoBehaviour {
 			PijakanManagerScript.Instance.SpawnPijakan ();
 			armature.animation.Play (landingAnimation,1);
 			isLanding = true;
+			timerAnimationToIdle = 0.75f;
 		}
 			
 	}

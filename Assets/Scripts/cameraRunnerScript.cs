@@ -21,7 +21,7 @@ public class cameraRunnerScript : MonoBehaviour {
 			} else {
 				rb.velocity = Vector2.zero;
 				if (transform.position.x < player.position.x + 6) {
-					transform.Translate (Vector3.right * 0.1f);
+					transform.Translate (Vector3.right * 0.3f);
 					GameControlScript.Instance.IsBGMove = true;
 				} else {
 					GameControlScript.Instance.IsBGMove = false;
