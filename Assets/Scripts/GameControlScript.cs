@@ -95,7 +95,8 @@ public class GameControlScript : MonoBehaviour {
 		PS.rbPlayer.gravityScale = 0;
 		PS.OnGround = true;
 		PS.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
-		Invoke ("GameOverPopUp", 3f);
+		//Invoke ("GameOverPopUp", 3f);
+		GameOverPopUp();
 	}
 
 	public void GameOverPopUp(){
@@ -103,8 +104,7 @@ public class GameControlScript : MonoBehaviour {
 		GameState [1].SetActive (true);
 		GameState [2].SetActive (false);
 		SaveHighScore ();
-		isGameOn = false;
-		Time.timeScale = 0;
+		//isGameOn = false;
 	}
 
 	public void Pause(){
