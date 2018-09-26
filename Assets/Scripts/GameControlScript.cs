@@ -25,7 +25,9 @@ public class GameControlScript : MonoBehaviour {
 	private int score;
 	private bool isGameOn;
 	private bool isBGMove;
+	private bool isGameOver;
 
+	private MusicPlayer m_MusicPlayer;
 	// Use this for initialization
 	void Awake () {
 		if (Instance == null) {
@@ -35,6 +37,7 @@ public class GameControlScript : MonoBehaviour {
 		}
 		isGameOn = true;
 		Time.timeScale = 1;
+		isGameOver = false;
 	}
 
 	void Start(){
@@ -53,6 +56,8 @@ public class GameControlScript : MonoBehaviour {
 
 		GameState [1].SetActive (false);
 		GameState [2].SetActive (false);
+
+		m_MusicPlayer = FindObjectOfType<MusicPlayer> ();
 	}
 	
 	// Update is called once per frame
@@ -83,6 +88,17 @@ public class GameControlScript : MonoBehaviour {
 	}
 
 	public void GameOver(){
+		isGameOver = true;
+		m_MusicPlayer.m_audioSource.Stop ();
+		m_MusicPlayer.m_audioSource.PlayOneShot (m_MusicPlayer.gameOverAudio);
+		PS.rbPlayer.velocity = Vector2.zero;
+		PS.rbPlayer.gravityScale = 0;
+		PS.OnGround = true;
+		PS.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
+		Invoke ("GameOverPopUp", 3f);
+	}
+
+	public void GameOverPopUp(){
 		GameState [0].SetActive (false);
 		GameState [1].SetActive (true);
 		GameState [2].SetActive (false);
@@ -116,6 +132,8 @@ public class GameControlScript : MonoBehaviour {
 
 	public void TryAgain(){
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+		m_MusicPlayer.m_audioSource.clip = m_MusicPlayer.gameAudio;
+		m_MusicPlayer.m_audioSource.Play ();
 	}
 
 	public bool IsGameOn{
@@ -133,6 +151,15 @@ public class GameControlScript : MonoBehaviour {
 		}
 		set{
 			isBGMove = value;
+		}
+	}
+
+	public bool IsGameOver{
+		get{
+			return isGameOver;
+		}
+		set{
+			isGameOver = value;
 		}
 	}
 

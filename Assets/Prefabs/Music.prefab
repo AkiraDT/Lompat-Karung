@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2c682e099cc3b43aab1e6bb145279a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuAudio: {fileID: 8300000, guid: e0ad74cc45cc42c41858a0e6e6375298, type: 3}
-  gameAudio: {fileID: 8300000, guid: 69f51e9b46966374f9de14ddbcbefc66, type: 3}
+  menuAudio: {fileID: 8300000, guid: 51ec87262e02e87449da8b31438aa44e, type: 3}
+  gameAudio: {fileID: 8300000, guid: 6b6b2d8261c0bd54083bd6edda5ad63f, type: 3}
+  gameOverAudio: {fileID: 8300000, guid: 5680e079c75e34e479a87a991ca42f51, type: 3}
   sceneName:
   - MainMenuScene
   - MainGameScene

@@ -8,8 +8,8 @@ public class PijakanManagerScript : MonoBehaviour {
 	public GameObject[] PijakanPrefab;
 	public float spawnRate = 4f;
 
-	private float pijakanXMin = 5f;
-	private float pijakanXMax = 7.5f;
+	private float pijakanXMin = 7f;
+	private float pijakanXMax = 8f;
 	private float pijakanYMin = -5f;
 	private float pijakanYMax = -3f;
 	private GameObject LastPijakan;

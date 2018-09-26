@@ -20,13 +20,15 @@ public class cameraRunnerScript : MonoBehaviour {
 				rb.velocity = new Vector2 (GameControlScript.Instance.scrollSpeed, 0f);
 			} else {
 				rb.velocity = Vector2.zero;
-				if (transform.position.x < player.position.x + 6) {
+				if (transform.position.x < player.position.x + 6 && !GameControlScript.Instance.IsGameOver) {
 					transform.Translate (Vector3.right * 0.3f);
 					GameControlScript.Instance.IsBGMove = true;
 				} else {
 					GameControlScript.Instance.IsBGMove = false;
 				}
 			}
+		} else {
+			rb.velocity = Vector2.zero;
 		}
 	}
 }

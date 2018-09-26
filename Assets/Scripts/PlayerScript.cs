@@ -16,6 +16,9 @@ public class PlayerScript : MonoBehaviour {
 	private float timerAnimationToIdle = 0.75f;
 	private bool isLanding = false;
 	private TouchInputMovement TIM;	//buat supaya pas udah neken, ga kepanggil idlenya
+
+	private SFXPlayer m_SFXPlayer;
+	private MusicPlayer m_MusicPlayer;
 	// Use this for initialization
 	void Start () {
 		onGround = true;
@@ -23,6 +26,8 @@ public class PlayerScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		armature = GetComponentInChildren<UnityArmatureComponent> ();
 		TIM = FindObjectOfType<TouchInputMovement> ();
+		m_SFXPlayer = FindObjectOfType<SFXPlayer> ();
+		m_MusicPlayer = FindObjectOfType<MusicPlayer> ();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +46,9 @@ public class PlayerScript : MonoBehaviour {
 				isLanding = false;
 			}
 		}
+		if (GameControlScript.Instance.IsGameOver) {
+			m_SFXPlayer.m_audioSource.Stop ();
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
@@ -52,16 +60,16 @@ public class PlayerScript : MonoBehaviour {
 			armature.animation.Play (landingAnimation,1);
 			isLanding = true;
 			timerAnimationToIdle = 0.75f;
+			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [2]);
 		}
 			
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.CompareTag ("DeathZone")) {
-			GameControlScript.Instance.GameOver();
+			GameControlScript.Instance.GameOver ();
 		}
 	}
-
 
 	public bool OnGround{
 		get{
@@ -69,6 +77,15 @@ public class PlayerScript : MonoBehaviour {
 		}
 		set{ 
 			onGround = value;
+		}
+	}
+
+	public Rigidbody2D rbPlayer{
+		get{
+			return this.rb;
+		}
+		set{
+			this.rb = value;
 		}
 	}
 }

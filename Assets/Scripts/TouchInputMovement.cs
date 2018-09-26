@@ -31,6 +31,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private string prepareLandingAnimation = "prepare_landing";
 	private string landingAnimation = "landing";
 
+	private SFXPlayer m_SFXPlayer;
 	// Use this for initialization
 	void Start () {
 		hold = false;
@@ -45,11 +46,14 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		forwardRotation = Quaternion.Euler (0f,0f,35f);
 
 		armature = Player.GetComponentInChildren<UnityArmatureComponent> ();
+
+		m_SFXPlayer = FindObjectOfType<SFXPlayer> ();
 	}
 
 	void Update(){
 		if (hold) {
-			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
+			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove && 
+				!GameControlScript.Instance.IsGameOver) {
 				//if (jumpPressure < maxJumpPressure) {
 				jumpPressure += Time.deltaTime * 9f;
 				//} else {
@@ -62,25 +66,28 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 		if (!Player.GetComponent<PlayerScript> ().OnGround) {
 			//Player.transform.rotation = Quaternion.Lerp (Player.transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
-
 		}
 		
 	}
 
 	//ketika menyentuh layar
 	public virtual void OnPointerDown(PointerEventData ped){
-		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
+			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver) {
 			hold = true;
 
 			armature.animation.Play(prepareChargeAnimation,1);
 			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
+
+			m_SFXPlayer.m_audioSource.PlayOneShot( m_SFXPlayer.sfxAudio [0]);
 		}
 	}
 
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
-		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && 
+			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver) {
 			hold = false;
 			//Player.transform.rotation = forwardRotation;
 			jumpPressure/=1.3f;
@@ -97,6 +104,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			armature.animation.FadeIn (onAirAnimation,0.25f,1);
 			armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
+
+			m_SFXPlayer.m_audioSource.Stop ();
+			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
 		}
 	}
 

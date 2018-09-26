@@ -61,6 +61,11 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 					rb.velocity = Vector2.zero;
 				}
 			}
+		}else{
+			if (!CompareTag ("ContinousBG")) {
+				//rb.velocity = Vector2.zero;
+				//rb.velocity = new Vector2 (- Mathf.Abs(scrollSpeed) - localScrollSpeed, 0f);
+			}
 		}
 	}
 }

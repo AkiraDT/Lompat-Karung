@@ -27,10 +27,10 @@ public class SoundScript : MonoBehaviour {
 
 	public void UpdateIcon(){		//icon button diubah
 		if (PlayerPrefs.GetInt ("Muted") == 0) {		//On
-			AudioListener.volume = 1;
+			m_MusicPlayer.m_audioSource.volume = 0.5f;
 			MusicToggleButton.GetComponent<Image> ().sprite = musicOnSprite;
 		} else {		//Off
-			AudioListener.volume = 0;
+			m_MusicPlayer.m_audioSource.volume = 0;
 			MusicToggleButton.GetComponent<Image> ().sprite = musicOffSprite;
 		}
 	}

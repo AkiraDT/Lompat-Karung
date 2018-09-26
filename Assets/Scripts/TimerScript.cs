@@ -16,11 +16,12 @@ public class TimerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		count = GameControlScript.Instance.countDownTimer;
+		if (!GameControlScript.Instance.IsGameOver) {
+			count = GameControlScript.Instance.countDownTimer;
+			displayText.text = Mathf.Round (count).ToString ();
+		}
 
-		displayText.text = Mathf.Round (count).ToString ();
-
-		if (count <= 0) {
+		if (count <= 0.5f && !GameControlScript.Instance.IsGameOver) {
 			GameControlScript.Instance.GameOver ();
 		}
 	}

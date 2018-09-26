@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529586893361896}
   - component: {fileID: 114489331173862386}
+  - component: {fileID: 114233523130979384}
   m_Layer: 0
   m_Name: SoundSetting
   m_TagString: Untagged
@@ -40,6 +41,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114233523130979384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093399302526060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8367fc176c87d5845a47de7263eca556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxOnSprite: {fileID: 21300000, guid: 38eab0d02d5715849b4ef21c59a17a3b, type: 3}
+  sfxOffSprite: {fileID: 21300000, guid: 7e03f932212c5454dbe2694b0fd21bae, type: 3}
+  SFXToggleButton: {fileID: 0}
 --- !u!114 &114489331173862386
 MonoBehaviour:
   m_ObjectHideFlags: 1

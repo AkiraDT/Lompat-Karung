@@ -535,6 +535,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 246950466}
+--- !u!1 &291331958 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1893103032578438, guid: f38727fdcc83b9740a2de82b956f47de,
+    type: 2}
+  m_PrefabInternal: {fileID: 1778829430}
 --- !u!1001 &293173711
 Prefab:
   m_ObjectHideFlags: 0
@@ -994,6 +999,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114233523130979384, guid: 3724c1399d8e2574496c8b2caa8c28e1,
+        type: 2}
+      propertyPath: SFXToggleButton
+      value: 
+      objectReference: {fileID: 291331958}
     - target: {fileID: 114489331173862386, guid: 3724c1399d8e2574496c8b2caa8c28e1,
         type: 2}
       propertyPath: MusicToggleButton
@@ -1002,6 +1012,153 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3724c1399d8e2574496c8b2caa8c28e1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &544295487
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -10.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327137735691436, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450394199089384, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+      propertyPath: m_Name
+      value: Sfx
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114782793626524440, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 5bd91e8d017cb0449bf546e571d05a02, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &544295488 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1450394199089384, guid: 5bd91e8d017cb0449bf546e571d05a02,
+    type: 2}
+  m_PrefabInternal: {fileID: 544295487}
+--- !u!114 &544295489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 544295488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11aef86a2bda0ae4d8287b90e2c47d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxAudio:
+  - {fileID: 8300000, guid: b74bcd1dab701f7439865b775581a0e7, type: 3}
+  - {fileID: 8300000, guid: 6b649107f3f190a48a89a1d23fbb8204, type: 3}
+  - {fileID: 8300000, guid: f9ec1fa60e811d243ad0bef376a28eb8, type: 3}
+--- !u!82 &544295490
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 544295488}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &609651040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,7 +2506,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2614,6 +2771,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114704043133495980, guid: f38727fdcc83b9740a2de82b956f47de,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224193911285888804, guid: f38727fdcc83b9740a2de82b956f47de,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -2723,6 +2885,31 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OptionOFF
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704043133495980, guid: f38727fdcc83b9740a2de82b956f47de,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704043133495980, guid: f38727fdcc83b9740a2de82b956f47de,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704043133495980, guid: f38727fdcc83b9740a2de82b956f47de,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1908534023}
+    - target: {fileID: 114704043133495980, guid: f38727fdcc83b9740a2de82b956f47de,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704043133495980, guid: f38727fdcc83b9740a2de82b956f47de,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f38727fdcc83b9740a2de82b956f47de, type: 2}
@@ -2918,6 +3105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localScrollSpeed: 0.5
+--- !u!114 &1908534023 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114233523130979384, guid: 3724c1399d8e2574496c8b2caa8c28e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 541204388}
+  m_Script: {fileID: 11500000, guid: 8367fc176c87d5845a47de7263eca556, type: 3}
 --- !u!114 &1977892496 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114489331173862386, guid: 3724c1399d8e2574496c8b2caa8c28e1,

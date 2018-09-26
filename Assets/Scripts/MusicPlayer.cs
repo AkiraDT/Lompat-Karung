@@ -6,14 +6,17 @@ public class MusicPlayer : MonoBehaviour {
 	static MusicPlayer instance = null;
 	public AudioClip menuAudio;
 	public AudioClip gameAudio;
+	public AudioClip gameOverAudio;
 
 	private AudioSource audioSource;
 	public string[] sceneName;							//Nama Scene untuk dijadikan referensi music mana yang akan diputar
 	private bool[] changeMusicHelper;		//agar music hanya ada 1 yang aktif (tidak overlap)
 
-	
-	void Start () {
+	void Awake(){
 		audioSource = GetComponent<AudioSource> ();
+	}
+
+	void Start () {
 		changeMusicHelper = new bool[sceneName.Length];
 		for(int i=0; i<sceneName.Length; i++){
 			changeMusicHelper [i] = true;
@@ -56,6 +59,12 @@ public class MusicPlayer : MonoBehaviour {
 		}else{
 			PlayerPrefs.SetInt ("Muted", 0);
 			//unmute
+		}
+	}
+
+	public AudioSource m_audioSource{
+		get{
+			return audioSource;
 		}
 	}
 }
