@@ -32,6 +32,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private string landingAnimation = "landing";
 
 	private SFXPlayer m_SFXPlayer;
+	private float minJumpDur;			//minimal time to jump
 	// Use this for initialization
 	void Start () {
 		hold = false;
@@ -61,6 +62,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				//}
 
 				Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = jumpPressure;
+				minJumpDur -= Time.deltaTime;
 			}
 		}
 
@@ -80,17 +82,18 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
 
 			m_SFXPlayer.m_audioSource.PlayOneShot( m_SFXPlayer.sfxAudio [0]);
+			minJumpDur = 0.5f;
 		}
 	}
 
 	//ketika sentuhan dilepaskan
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
-		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround && 
-			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver) {
+		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
+		    !GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver && minJumpDur <= 0f) {
 			hold = false;
 			//Player.transform.rotation = forwardRotation;
-			jumpPressure/=1.3f;
+			jumpPressure /= 1.3f;
 
 			GameControlScript.Instance.scrollSpeed = -jumpPressure;
 			if (jumpPressure > 0) {
@@ -100,13 +103,19 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				jumpPressure = 0;
 				Player.GetComponent<PlayerScript> ().OnGround = false;
 			}
-			armature.animation.FadeIn (jumpAnimation,-1,1);
-			armature.animation.FadeIn (onAirAnimation,0.25f,1);
+			armature.animation.FadeIn (jumpAnimation, -1, 1);
+			armature.animation.FadeIn (onAirAnimation, 0.25f, 1);
 			armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
 
 			m_SFXPlayer.m_audioSource.Stop ();
 			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
+		} else if(Player.GetComponent<PlayerScript> ().OnGround){
+			hold = false;
+			jumpPressure = 0f;
+			m_SFXPlayer.m_audioSource.Stop ();
+			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
+			armature.animation.FadeIn (idleAnimation, -1, 1);
 		}
 	}
 
