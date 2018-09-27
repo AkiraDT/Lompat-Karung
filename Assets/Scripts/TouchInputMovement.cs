@@ -69,7 +69,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
 
 			m_SFXPlayer.m_audioSource.PlayOneShot( m_SFXPlayer.sfxAudio [0]);
-			minJumpDur = 0.5f;
+			minJumpDur = 0.25f;
 		}
 	}
 
