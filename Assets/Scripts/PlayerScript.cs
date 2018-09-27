@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour {
 	private MusicPlayer m_MusicPlayer;
 
 	void Start () {
-		onGround = false;
+		onGround = true;
 		standRotation = Quaternion.Euler (0f,0f,0f);
 		rb = GetComponent<Rigidbody2D> ();
 		armature = GetComponentInChildren<UnityArmatureComponent> ();
