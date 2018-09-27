@@ -9,30 +9,15 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 	private Rigidbody2D rb;
 	private float scrollSpeed;
 
-	// Use this for initialization
 	void Start () {
-		/*
-		if (this.CompareTag ("BackGround")) {
-			scrollSpeed = GameControlScript.Instance.BGScrollSpeed;
-		} else {
-			scrollSpeed = GameControlScript.Instance.scrollSpeed;
-		}
-		*/
-
 		PS = GameObject.FindObjectOfType<PlayerScript>();
 		rb = GetComponent<Rigidbody2D> ();
 	}
 
 	void FixedUpdate(){
-		//if (this.CompareTag ("BackGround")) {
-		//	scrollSpeed = GameControlScript.Instance.BGScrollSpeed;
-		//} else {
-			scrollSpeed = GameControlScript.Instance.scrollSpeed;
-		//}
-
+		scrollSpeed = GameControlScript.Instance.scrollSpeed;
 	}
 
-	// Update is called once per frame
 	void Update () {
 		if (GameControlScript.Instance.IsGameOn) {
 			//For Parallax
@@ -44,7 +29,6 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 				} else {
 					rb.velocity = Vector2.zero;
 				}
-
 			}
 			else if(this.CompareTag ("ContinousBG")){
 				rb.velocity = Vector2.zero;
@@ -60,11 +44,6 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 				} else {
 					rb.velocity = Vector2.zero;
 				}
-			}
-		}else{
-			if (!CompareTag ("ContinousBG")) {
-				//rb.velocity = Vector2.zero;
-				//rb.velocity = new Vector2 (- Mathf.Abs(scrollSpeed) - localScrollSpeed, 0f);
 			}
 		}
 	}

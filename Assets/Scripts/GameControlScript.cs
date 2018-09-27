@@ -12,12 +12,10 @@ public class GameControlScript : MonoBehaviour {
 	public GameObject ScoreHolder1;
 	public GameObject ScoreHolder2;
 	public GameObject HighScoreHolder;
-	//public float BGScrollSpeed;
 	public GameObject[] GameState;
-
 	public float countDownTimer = 10.5f;
-	private float countDownTimerT;
 
+	private float countDownTimerT;
 	private PlayerScript PS;
 	private TextMeshProUGUI ScoreText1;
 	private TextMeshProUGUI ScoreText2;
@@ -26,9 +24,8 @@ public class GameControlScript : MonoBehaviour {
 	private bool isGameOn;
 	private bool isBGMove;
 	private bool isGameOver;
-
 	private MusicPlayer m_MusicPlayer;
-	// Use this for initialization
+
 	void Awake () {
 		if (Instance == null) {
 			Instance = this;
@@ -60,7 +57,6 @@ public class GameControlScript : MonoBehaviour {
 		m_MusicPlayer = FindObjectOfType<MusicPlayer> ();
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		if (ScoreHolder1 != null) {
 			if (score < 0)
@@ -74,8 +70,6 @@ public class GameControlScript : MonoBehaviour {
 				countDownTimer -= Time.deltaTime;
 			}
 		}
-		//BGScrollSpeed = scrollSpeed - 2;
-
 	}
 
 	public int Score{
@@ -95,7 +89,7 @@ public class GameControlScript : MonoBehaviour {
 		PS.rbPlayer.gravityScale = 0;
 		PS.OnGround = true;
 		PS.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
-		//Invoke ("GameOverPopUp", 3f);
+		//Invoke ("GameOverPopUp", 3f);		//if we wanted to have delay before the popup shown
 		GameOverPopUp();
 	}
 
@@ -104,7 +98,6 @@ public class GameControlScript : MonoBehaviour {
 		GameState [1].SetActive (true);
 		GameState [2].SetActive (false);
 		SaveHighScore ();
-		//isGameOn = false;
 	}
 
 	public void Pause(){

@@ -10,16 +10,13 @@ public class SoundScript : MonoBehaviour {
 	public Sprite musicOffSprite;
 	public GameObject MusicToggleButton;
 
-
 	private MusicPlayer m_MusicPlayer;
 
-	// Use this for initialization
 	void Awake () {
 		m_MusicPlayer = GameObject.FindObjectOfType<MusicPlayer> ();
 		UpdateIcon ();
 	}
-
-
+		
 	public void ToggleButton(){			//Ketika tombol di klik
 		m_MusicPlayer.ToggleSound ();
 		UpdateIcon ();

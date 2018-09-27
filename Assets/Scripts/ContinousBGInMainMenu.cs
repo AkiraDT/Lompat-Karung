@@ -8,7 +8,6 @@ public class ContinousBGInMainMenu : MonoBehaviour {
 	private Rigidbody2D rb;
 	private float scrollSpeed;
 
-	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 	}

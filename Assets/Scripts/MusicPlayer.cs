@@ -10,7 +10,7 @@ public class MusicPlayer : MonoBehaviour {
 
 	private AudioSource audioSource;
 	public string[] sceneName;							//Nama Scene untuk dijadikan referensi music mana yang akan diputar
-	private bool[] changeMusicHelper;		//agar music hanya ada 1 yang aktif (tidak overlap)
+	private bool[] changeMusicHelper;					//agar music hanya ada 1 yang aktif (tidak overlap)
 
 	void Awake(){
 		audioSource = GetComponent<AudioSource> ();

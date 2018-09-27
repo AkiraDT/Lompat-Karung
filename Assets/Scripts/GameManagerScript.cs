@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
 	GameObject[] CanvasObject = new GameObject[2];
-	// Use this for initialization
+
 	void Start () {
 		CanvasObject[0] = GameObject.Find ("Canvas");
 		CanvasObject[1] = GameObject.Find ("Option");
@@ -18,11 +18,6 @@ public class GameManagerScript : MonoBehaviour {
 			PlayerPrefs.SetInt ("IsFirstPlayed",1);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void LoadLevel(string sceneName){
 		if(sceneName.Contains("MainGameScene")){
@@ -30,7 +25,6 @@ public class GameManagerScript : MonoBehaviour {
 				sceneName = "HowToPlayScene";
 			}
 		}
-
 		SceneManager.LoadScene (sceneName);
 	}
 

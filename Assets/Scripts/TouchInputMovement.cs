@@ -17,11 +17,6 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private Rigidbody2D rb;
 	private bool hold;
 
-
-	private Quaternion downRotation;
-	private Quaternion forwardRotation;
-
-
 	private UnityArmatureComponent armature;		
 	private string idleAnimation = "idle";
 	private string prepareChargeAnimation = "prepare_charge";
@@ -33,7 +28,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	private SFXPlayer m_SFXPlayer;
 	private float minJumpDur;			//minimal time to jump
-	// Use this for initialization
+
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
@@ -42,16 +37,12 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		minJump = 0f;
 		jumpPressure = 0f;
 		maxJumpPressure = 10f;
-
-		downRotation = Quaternion.Euler (0f,0f,-90f);
-		forwardRotation = Quaternion.Euler (0f,0f,35f);
-
 		armature = Player.GetComponentInChildren<UnityArmatureComponent> ();
-
 		m_SFXPlayer = FindObjectOfType<SFXPlayer> ();
 	}
 
 	void Update(){
+		//when player hold press	/ charging jump
 		if (hold) {
 			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove && 
 				!GameControlScript.Instance.IsGameOver) {
@@ -61,18 +52,14 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				//jumpPressure = maxJumpPressure;
 				//}
 
-				Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = jumpPressure;
+				Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = jumpPressure;		//draw arc line
 				minJumpDur -= Time.deltaTime;
 			}
-		}
-
-		if (!Player.GetComponent<PlayerScript> ().OnGround) {
-			//Player.transform.rotation = Quaternion.Lerp (Player.transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
 		}
 		
 	}
 
-	//ketika menyentuh layar
+	//when press
 	public virtual void OnPointerDown(PointerEventData ped){
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
 			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver) {
@@ -86,19 +73,16 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		}
 	}
 
-	//ketika sentuhan dilepaskan
+	//when let go
 	public virtual void OnPointerUp(PointerEventData ped){
 		//PM.SpawnPijakan ();
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
 		    !GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver && minJumpDur <= 0f) {
 			hold = false;
-			//Player.transform.rotation = forwardRotation;
 			jumpPressure /= 1.3f;
-
 			GameControlScript.Instance.scrollSpeed = -jumpPressure;
 			if (jumpPressure > 0) {
 				jumpPressure = jumpPressure + minJump;
-//			rb.velocity = new Vector2 (jumpPressure/2f, jumpPressure);
 				rb.velocity = new Vector2 (0f, jumpPressure);
 				jumpPressure = 0;
 				Player.GetComponent<PlayerScript> ().OnGround = false;
@@ -107,11 +91,11 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 			}
 
-			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
-
+			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;		//reset arc line
 			m_SFXPlayer.m_audioSource.Stop ();
 			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
-		} else if(Player.GetComponent<PlayerScript> ().OnGround){
+
+		} else if(Player.GetComponent<PlayerScript> ().OnGround){		//player can't jump if the press duration is <= 0.5s
 			hold = false;
 			jumpPressure = 0f;
 			m_SFXPlayer.m_audioSource.Stop ();

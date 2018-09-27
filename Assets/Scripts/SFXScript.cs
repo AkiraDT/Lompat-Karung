@@ -13,7 +13,6 @@ public class SFXScript : MonoBehaviour {
 
 	private SFXPlayer m_SFXPlayer;
 
-	// Use this for initialization
 	void Awake () {
 		m_SFXPlayer = GameObject.FindObjectOfType<SFXPlayer> ();
 		UpdateIcon ();

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BackButtonAndroidScript : MonoBehaviour {
-
-	// Update is called once per frame
+	
 	void Update () {
 		if (Input.GetKeyUp(KeyCode.Escape))		//ketika klik tombol back
 		{

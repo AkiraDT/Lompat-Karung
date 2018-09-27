@@ -17,7 +17,6 @@ public class SFXPlayer : MonoBehaviour {
 	}
 
 	void Start () {
-
 		if (instance != null && instance != this) {		//jika ada lebih dari satu objek SFX
 			Destroy (gameObject);
 			print ("Duplicate SFX player self-destructing!");
@@ -25,19 +24,9 @@ public class SFXPlayer : MonoBehaviour {
 			instance = this;
 			GameObject.DontDestroyOnLoad(gameObject);
 		}
-
-//		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
-/*
-	void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-		if (SceneManager.GetActiveScene ().name == "MainGameScene") {
-			TIM = FindObjectOfType<TouchInputMovement> ();
-			player = FindObjectOfType<PlayerScript> ();
-		}
-	}
-*/
 
-	//Untuk menghidupkan dan mematikan music
+	//Untuk menghidupkan dan mematikan sfx
 	public void ToggleSound(){
 		if (PlayerPrefs.GetInt ("MutedSFX") == 0) {
 			PlayerPrefs.SetInt ("MutedSFX", 1);

@@ -24,7 +24,6 @@ public class LaunchArcRenderer : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
 	void FixedUpdate () {
 		RenderArc ();
 	}

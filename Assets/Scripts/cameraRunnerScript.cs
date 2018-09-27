@@ -13,12 +13,11 @@ public class cameraRunnerScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 	}
 
-	// Update is called once per frame
 	void Update () {
 		if (GameControlScript.Instance.IsGameOn) {
 			if (!PS.OnGround) {
 				rb.velocity = new Vector2 (GameControlScript.Instance.scrollSpeed, 0f);
-			} else {
+			} else {		//camera will scroll back to player
 				rb.velocity = Vector2.zero;
 				if (transform.position.x < player.position.x + 6 && !GameControlScript.Instance.IsGameOver) {
 					transform.Translate (Vector3.right * 0.3f);
