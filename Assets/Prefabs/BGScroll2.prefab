@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114846447638941220}
   m_Layer: 0
   m_Name: BGScroll2
-  m_TagString: BackGround
+  m_TagString: ContinousBG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 50668209460574084}
   m_Layer: 0
   m_Name: 3
-  m_TagString: BackGround
+  m_TagString: ContinousBG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 50873995650008096}
   m_Layer: 0
   m_Name: 1
-  m_TagString: BackGround
+  m_TagString: ContinousBG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 50627496989747940}
   m_Layer: 0
   m_Name: 2
-  m_TagString: BackGround
+  m_TagString: ContinousBG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,10 +149,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1964850096633622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 2.81, z: 0}
+  m_LocalPosition: {x: 0, y: 2.81, z: 0}
   m_LocalScale: {x: 0.6817157, y: 0.6817157, z: 0.6817157}
   m_Children: []
-  m_Father: {fileID: 4930229331796812}
+  m_Father: {fileID: 4669840980975148}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4661017048790166
@@ -179,7 +179,7 @@ Transform:
   m_LocalPosition: {x: -6.7, y: 0, z: 0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4874634560459958}
+  - {fileID: 4293275604948606}
   m_Father: {fileID: 4091238008751494}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -206,7 +206,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 4.09, z: 0}
   m_LocalScale: {x: 0.220277, y: 0.22027701, z: 0.22027701}
   m_Children: []
-  m_Father: {fileID: 4669840980975148}
+  m_Father: {fileID: 4930229331796812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930229331796812
@@ -219,7 +219,7 @@ Transform:
   m_LocalPosition: {x: -25.81, y: 0, z: 0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4293275604948606}
+  - {fileID: 4874634560459958}
   m_Father: {fileID: 4091238008751494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScrollSpeed: -10
+  localScrollSpeed: -0.3
 --- !u!114 &114437734984968162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScrollSpeed: -10
+  localScrollSpeed: -0.3
 --- !u!114 &114669603042307288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e535fd1d34bc14f8d74e5ac7b516b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScrollSpeed: -10
+  localScrollSpeed: -0.3
 --- !u!114 &114846447638941220
 MonoBehaviour:
   m_ObjectHideFlags: 1

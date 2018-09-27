@@ -1812,7 +1812,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!1001 &1490757977
+--- !u!1001 &1538239550
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
