@@ -102,10 +102,11 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				rb.velocity = new Vector2 (0f, jumpPressure);
 				jumpPressure = 0;
 				Player.GetComponent<PlayerScript> ().OnGround = false;
+				armature.animation.FadeIn (jumpAnimation, -1, 1);
+				armature.animation.FadeIn (onAirAnimation, 0.25f, 1);
+				armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 			}
-			armature.animation.FadeIn (jumpAnimation, -1, 1);
-			armature.animation.FadeIn (onAirAnimation, 0.25f, 1);
-			armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
+
 			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
 
 			m_SFXPlayer.m_audioSource.Stop ();
