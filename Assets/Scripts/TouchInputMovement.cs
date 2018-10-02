@@ -29,7 +29,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private SFXPlayer m_SFXPlayer;
 	private float minJumpDur;			//minimal time to jump
 	private LineRenderer LR;
-
+	private float jumpPressureX;		//for adjusting scrollSpeed
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
@@ -83,7 +83,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		    !GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver && minJumpDur <= 0f) {
 			hold = false;
 			jumpPressure /= 1.3f;
-			GameControlScript.Instance.scrollSpeed = -jumpPressure;
+			jumpPressureX = jumpPressure - 1f;
+				
+			GameControlScript.Instance.scrollSpeed = -jumpPressureX;
 			if (jumpPressure > 0) {
 				jumpPressure = jumpPressure + minJump;
 				rb.velocity = new Vector2 (0f, jumpPressure);
