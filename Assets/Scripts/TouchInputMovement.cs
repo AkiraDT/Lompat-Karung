@@ -68,12 +68,11 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			hold = true;
 			armature.animation.Play(prepareChargeAnimation,1);
 			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
-
-			m_SFXPlayer.m_audioSource.PlayOneShot( m_SFXPlayer.sfxAudio [0]);
-			minJumpDur = 0.25f;
 			if (GameControlScript.Instance.Score < 20) {
 				LR.enabled = true;
 			}
+			m_SFXPlayer.m_audioSource.PlayOneShot( m_SFXPlayer.sfxAudio [0]);
+			minJumpDur = 0.25f;
 		}
 	}
 
