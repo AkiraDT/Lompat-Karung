@@ -57,7 +57,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 		if (velocity != 0) {
 			return new Vector3 (transform.parent.transform.position.x + x, transform.parent.transform.position.y -1.5f + y, -1);
 		} else {
-			return new Vector3 (-10, -1, -1);
+			return new Vector3 (transform.parent.transform.position.x, transform.parent.transform.position.y -1.5f, -1);
 		}
 	}
 }

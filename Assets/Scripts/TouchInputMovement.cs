@@ -28,6 +28,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	private SFXPlayer m_SFXPlayer;
 	private float minJumpDur;			//minimal time to jump
+	private LineRenderer LR;
 
 	void Start () {
 		hold = false;
@@ -39,13 +40,15 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		maxJumpPressure = 10f;
 		armature = Player.GetComponentInChildren<UnityArmatureComponent> ();
 		m_SFXPlayer = FindObjectOfType<SFXPlayer> ();
+		LR = Player.GetComponentInChildren<LineRenderer> ();
+		LR.enabled = false;
 	}
 
 	void Update(){
 		//when player hold press	/ charging jump
 		if (hold) {
-			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove && 
-				!GameControlScript.Instance.IsGameOver) {
+			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove &&
+			    !GameControlScript.Instance.IsGameOver) {
 				//if (jumpPressure < maxJumpPressure) {
 				jumpPressure += Time.deltaTime * 9f;
 				//} else {
@@ -56,7 +59,6 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				minJumpDur -= Time.deltaTime;
 			}
 		}
-		
 	}
 
 	//when press
@@ -64,12 +66,14 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
 			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver) {
 			hold = true;
-
 			armature.animation.Play(prepareChargeAnimation,1);
 			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
 
 			m_SFXPlayer.m_audioSource.PlayOneShot( m_SFXPlayer.sfxAudio [0]);
 			minJumpDur = 0.25f;
+			if (GameControlScript.Instance.Score < 20) {
+				LR.enabled = true;
+			}
 		}
 	}
 
@@ -102,6 +106,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
 			armature.animation.FadeIn (idleAnimation, -1, 1);
 		}
+		LR.enabled = false;
 	}
 
 	public bool Hold{
@@ -109,4 +114,5 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			return hold;
 		}
 	}
+		
 }

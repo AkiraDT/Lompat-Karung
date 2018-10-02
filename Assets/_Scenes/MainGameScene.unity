@@ -939,6 +939,21 @@ Prefab:
       propertyPath: m_Offset.x
       value: -0.07
       objectReference: {fileID: 0}
+    - target: {fileID: 120126433733248058, guid: 296e65d1411ee744e9aa55d0b1438d88,
+        type: 2}
+      propertyPath: m_Parameters.generateLightingData
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120126433733248058, guid: 296e65d1411ee744e9aa55d0b1438d88,
+        type: 2}
+      propertyPath: m_Parameters.textureMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120126433733248058, guid: 296e65d1411ee744e9aa55d0b1438d88,
+        type: 2}
+      propertyPath: m_Parameters.numCapVertices
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 296e65d1411ee744e9aa55d0b1438d88, type: 2}
   m_IsPrefabParent: 0

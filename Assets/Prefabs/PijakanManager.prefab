@@ -54,5 +54,5 @@ MonoBehaviour:
   PijakanPrefab:
   - {fileID: 1580832994466922, guid: 27ae903284f69f64fb25de8022b7ecba, type: 2}
   - {fileID: 1582265863159966, guid: 6dd974e192eba1544959867bd7dce17b, type: 2}
-  - {fileID: 1841948844065806, guid: 849eb7a8ab5eb714688a90ae02660d54, type: 2}
+  - {fileID: 1184833295059340, guid: 5b162d93985377e4885e6cb5ece03873, type: 2}
   spawnRate: 4

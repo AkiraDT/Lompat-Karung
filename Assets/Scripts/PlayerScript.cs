@@ -58,6 +58,7 @@ public class PlayerScript : MonoBehaviour {
 			this.transform.rotation = standRotation;
 
 			PijakanManagerScript.Instance.SpawnPijakan ();		//spawn platform
+			PijakanManagerScript.Instance.SpawnPijakan ();
 			armature.animation.Play (landingAnimation,1);
 			isLanding = true;
 			timerAnimationToIdle = 0.75f;						//play idle animation
