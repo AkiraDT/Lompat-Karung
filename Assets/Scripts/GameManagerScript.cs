@@ -13,18 +13,21 @@ public class GameManagerScript : MonoBehaviour {
 		if (CanvasObject [1] != null) {
 			CanvasObject [1].SetActive (false);
 		}
-		Screen.orientation = ScreenOrientation.Landscape;
+		//Screen.orientation = ScreenOrientation.Landscape;
+		/*
 		if (SceneManager.GetActiveScene ().name == "HowToPlayScene" && PlayerPrefs.GetInt("IsFirstPlayed") != 1) {
 			PlayerPrefs.SetInt ("IsFirstPlayed",1);
 		}
+		*/
 	}
 
 	public void LoadLevel(string sceneName){
+		/*
 		if(sceneName.Contains("MainGameScene")){
 			if(PlayerPrefs.GetInt("IsFirstPlayed") != 1){
 				sceneName = "HowToPlayScene";
 			}
-		}
+		}*/
 		SceneManager.LoadScene (sceneName);
 	}
 
