@@ -120,6 +120,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114670008621099570, guid: 3e177b45620318e45bd9b9182dffaefd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224580269634059160, guid: 3e177b45620318e45bd9b9182dffaefd,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -259,6 +264,31 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114670008621099570, guid: 3e177b45620318e45bd9b9182dffaefd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114670008621099570, guid: 3e177b45620318e45bd9b9182dffaefd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114670008621099570, guid: 3e177b45620318e45bd9b9182dffaefd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 580075319}
+    - target: {fileID: 114670008621099570, guid: 3e177b45620318e45bd9b9182dffaefd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopGameOverAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 114670008621099570, guid: 3e177b45620318e45bd9b9182dffaefd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e177b45620318e45bd9b9182dffaefd, type: 2}

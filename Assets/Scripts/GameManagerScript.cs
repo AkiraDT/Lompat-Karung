@@ -29,6 +29,7 @@ public class GameManagerScript : MonoBehaviour {
 			}
 		}*/
 		SceneManager.LoadScene (sceneName);
+
 	}
 
 	public void QuitRequest(){

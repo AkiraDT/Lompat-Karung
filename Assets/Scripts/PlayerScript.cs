@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour {
 
 	//If player touch deathzone (for game over)
 	void OnTriggerEnter2D(Collider2D col){
-		if (col.gameObject.CompareTag ("DeathZone")) {
+		if (col.gameObject.CompareTag ("DeathZone") && !GameControlScript.Instance.IsGameOver) {
 			GameControlScript.Instance.GameOver ();
 		}
 	}

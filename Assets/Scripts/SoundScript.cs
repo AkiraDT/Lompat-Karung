@@ -31,4 +31,9 @@ public class SoundScript : MonoBehaviour {
 			MusicToggleButton.GetComponent<Image> ().sprite = musicOffSprite;
 		}
 	}
+
+	public void StopGameOverAudio(){
+		m_MusicPlayer.m_audioSource.Stop ();
+		m_MusicPlayer.m_audioSource.Play ();
+	}
 }
