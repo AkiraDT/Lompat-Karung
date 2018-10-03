@@ -30,6 +30,8 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private float minJumpDur;			//minimal time to jump
 	private LineRenderer LR;
 	private float jumpPressureX;		//for adjusting scrollSpeed
+
+	private float jumpPressureForScore;
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
@@ -57,6 +59,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 				Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = jumpPressure;		//draw arc line
 				minJumpDur -= Time.deltaTime;
+				jumpPressureForScore = jumpPressure;
 			}
 		}
 	}
@@ -78,7 +81,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	//when let go
 	public virtual void OnPointerUp(PointerEventData ped){
-		//PM.SpawnPijakan ();
+		m_SFXPlayer.m_audioSource.Stop ();
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
 		    !GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver && minJumpDur <= 0f) {
 			hold = false;
@@ -89,30 +92,30 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 			if (jumpPressure > 0) {
 				jumpPressure = jumpPressure + minJump;
 				rb.velocity = new Vector2 (0f, jumpPressure);
-				jumpPressure = 0;
 				Player.GetComponent<PlayerScript> ().OnGround = false;
 				armature.animation.FadeIn (jumpAnimation, -1, 1);
 				armature.animation.FadeIn (onAirAnimation, 0.25f, 1);
 				armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
 			}
-
-			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;		//reset arc line
-			m_SFXPlayer.m_audioSource.Stop ();
 			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
-
 		} else if(Player.GetComponent<PlayerScript> ().OnGround){		//player can't jump if the press duration is <= 0.5s
 			hold = false;
-			jumpPressure = 0f;
-			m_SFXPlayer.m_audioSource.Stop ();
-			Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;
 			armature.animation.FadeIn (idleAnimation, -1, 1);
 		}
+		jumpPressure = 0f;
+		Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;		//reset arc line
 		LR.enabled = false;
 	}
 
 	public bool Hold{
 		get{
 			return hold;
+		}
+	}
+
+	public float jumpPressureScore{
+		get{
+			return jumpPressureForScore;
 		}
 	}
 		
