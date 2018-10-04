@@ -112,6 +112,7 @@ public class GameControlScript : MonoBehaviour {
 		GameState [2].SetActive (false);
 		isGameOn = true;
 		Time.timeScale = 1;
+		FindObjectOfType<TouchInputMovement> ().CancelJump ();
 	}
 
 	public void SaveHighScore(){

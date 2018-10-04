@@ -12,6 +12,7 @@ public class LaunchArcRenderer : MonoBehaviour {
 
 	float g;	//gravity on y axis
 	float radianAngle;
+	float timeFlight;
 
 	void Awake(){
 		lr = GetComponent<LineRenderer> ();	
@@ -22,6 +23,8 @@ public class LaunchArcRenderer : MonoBehaviour {
 		if (lr != null && Application.isPlaying) {
 			RenderArc ();
 		}
+
+		//lr.endColor = Color.
 	}
 
 	void FixedUpdate () {
@@ -32,6 +35,10 @@ public class LaunchArcRenderer : MonoBehaviour {
 	void RenderArc (){
 		lr.positionCount = resolution + 1;
 		lr.SetPositions (CalculateArcArray ());
+
+		if (velocity != 0f && GameControlScript.Instance.IsGameOn) {
+			timeFlight = (2 * velocity * Mathf.Sin (radianAngle) / g) / 2;
+		}
 	}
 
 	//create an array of vector3 position for arc 
@@ -45,7 +52,6 @@ public class LaunchArcRenderer : MonoBehaviour {
 			float t = (float)i / (float)resolution;
 			arcArray [i] = CalculateArcPoint (t, maxDistance);
 		}
-
 		return arcArray;
 	}
 
@@ -58,6 +64,12 @@ public class LaunchArcRenderer : MonoBehaviour {
 			return new Vector3 (transform.parent.transform.position.x + x, transform.parent.transform.position.y -1.5f + y, -1);
 		} else {
 			return new Vector3 (transform.parent.transform.position.x, transform.parent.transform.position.y -1.5f, -1);
+		}
+	}
+
+	public float TimeFlight{
+		get{
+			return timeFlight;
 		}
 	}
 }

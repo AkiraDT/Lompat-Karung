@@ -19,31 +19,29 @@ public class ScrollingBehaviourScript : MonoBehaviour {
 	}
 
 	void Update () {
-		if (GameControlScript.Instance.IsGameOn) {
-			//For Parallax
-			if (this.CompareTag ("BackGround")) {
-				if (GameControlScript.Instance.IsBGMove && GameControlScript.Instance.IsGameOn) {
-					rb.velocity = new Vector2 (scrollSpeed - localScrollSpeed, 0f);
-				} else if (!PS.OnGround) {
-					rb.velocity = new Vector2 (scrollSpeed, 0f);
-				} else {
-					rb.velocity = Vector2.zero;
-				}
-			}
-			else if(this.CompareTag ("ContinousBG")){
+		//For Parallax
+		if (this.CompareTag ("BackGround")) {
+			if (GameControlScript.Instance.IsBGMove && GameControlScript.Instance.IsGameOn) {
+				rb.velocity = new Vector2 (scrollSpeed - localScrollSpeed, 0f);
+			} else if (!PS.OnGround) {
+				rb.velocity = new Vector2 (scrollSpeed, 0f);
+			} else {
 				rb.velocity = Vector2.zero;
-				if (!PS.OnGround) {
-					rb.velocity = new Vector2 (- Mathf.Abs(scrollSpeed) - localScrollSpeed, 0f);
-				} else {
-					rb.velocity = new Vector2 (-localScrollSpeed, 0f);
-				}
-			} 
-			else {
-				if (!PS.OnGround) {
-					rb.velocity = new Vector2 (scrollSpeed, 0f);
-				} else {
-					rb.velocity = Vector2.zero;
-				}
+			}
+		}
+		else if(this.CompareTag ("ContinousBG")){
+			rb.velocity = Vector2.zero;
+			if (!PS.OnGround) {
+				rb.velocity = new Vector2 (- Mathf.Abs(scrollSpeed) - localScrollSpeed, 0f);
+			} else {
+				rb.velocity = new Vector2 (-localScrollSpeed, 0f);
+			}
+		} 
+		else {
+			if (!PS.OnGround) {
+				rb.velocity = new Vector2 (scrollSpeed, 0f);
+			} else {
+				rb.velocity = Vector2.zero;
 			}
 		}
 	}

@@ -22,8 +22,6 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private string prepareChargeAnimation = "prepare_charge";
 	private string chargeAnimation = "charge";
 	private string jumpAnimation = "jump";
-	private string onAirAnimation = "on_air";
-	private string prepareLandingAnimation = "prepare_landing";
 	private string landingAnimation = "landing";
 
 	private SFXPlayer m_SFXPlayer;
@@ -32,6 +30,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 	private float jumpPressureX;		//for adjusting scrollSpeed
 
 	private float jumpPressureForScore;
+
 	void Start () {
 		hold = false;
 		Player = GameObject.Find ("Player");
@@ -45,6 +44,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		LR = Player.GetComponentInChildren<LineRenderer> ();
 		LR.enabled = false;
 	}
+
 
 	void Update(){
 		//when player hold press	/ charging jump
@@ -64,10 +64,19 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		}
 	}
 
+	public void CancelJump(){
+		hold = false;
+		armature.animation.FadeIn (idleAnimation, 0.25f, 1);
+		jumpPressure = 0f;
+		Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;		//reset arc line
+		LR.enabled = false;
+	}
+
 	//when press
 	public virtual void OnPointerDown(PointerEventData ped){
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
-			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver) {
+			!GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver && 
+			!Player.GetComponent<PlayerScript> ().IsLanding) {
 			hold = true;
 			armature.animation.Play(prepareChargeAnimation,1);
 			armature.animation.FadeIn (chargeAnimation,0.2f,-1);
@@ -93,14 +102,14 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				jumpPressure = jumpPressure + minJump;
 				rb.velocity = new Vector2 (0f, jumpPressure);
 				Player.GetComponent<PlayerScript> ().OnGround = false;
-				armature.animation.FadeIn (jumpAnimation, -1, 1);
-				armature.animation.FadeIn (onAirAnimation, 0.25f, 1);
-				armature.animation.FadeIn (prepareLandingAnimation, 0.5f, -1);
+				armature.animation.FadeIn (jumpAnimation, 0.1f, 1);
+				GameControlScript.Instance.IsGameOn = false;
 			}
 			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
-		} else if(Player.GetComponent<PlayerScript> ().OnGround){		//player can't jump if the press duration is <= 0.5s
+			Player.GetComponent<PlayerScript> ().AirTransitionTime = Player.GetComponentInChildren<LaunchArcRenderer> ().TimeFlight;
+		} else if(Player.GetComponent<PlayerScript> ().OnGround && GameControlScript.Instance.IsGameOn){		//player can't jump if the press duration is <= 0.5s
 			hold = false;
-			armature.animation.FadeIn (idleAnimation, -1, 1);
+			armature.animation.FadeIn (idleAnimation, 0.25f, 1);
 		}
 		jumpPressure = 0f;
 		Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = 0;		//reset arc line
