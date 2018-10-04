@@ -73,7 +73,7 @@ public class PlayerScript : MonoBehaviour {
 		if (col.gameObject.CompareTag ("Ground")) {
 			onGround = true;
 			this.transform.rotation = standRotation;
-			Invoke ("TurnGameOn", 1f);
+			Invoke ("TurnGameOn", 0.75f);
 
 			PijakanManagerScript.Instance.SpawnPijakan ();		//spawn platform
 			PijakanManagerScript.Instance.SpawnPijakan ();

@@ -90,7 +90,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 
 	//when let go
 	public virtual void OnPointerUp(PointerEventData ped){
-		m_SFXPlayer.m_audioSource.Stop ();
+		if (GameControlScript.Instance.IsGameOn) {
+			m_SFXPlayer.m_audioSource.Stop ();
+		}
 		if (GameControlScript.Instance.IsGameOn && Player.GetComponent<PlayerScript> ().OnGround &&
 		    !GameControlScript.Instance.IsBGMove && !GameControlScript.Instance.IsGameOver && minJumpDur <= 0f) {
 			hold = false;
@@ -104,9 +106,9 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 				Player.GetComponent<PlayerScript> ().OnGround = false;
 				armature.animation.FadeIn (jumpAnimation, 0.1f, 1);
 				GameControlScript.Instance.IsGameOn = false;
+				m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
+				Player.GetComponent<PlayerScript> ().AirTransitionTime = Player.GetComponentInChildren<LaunchArcRenderer> ().TimeFlight;
 			}
-			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [1]);
-			Player.GetComponent<PlayerScript> ().AirTransitionTime = Player.GetComponentInChildren<LaunchArcRenderer> ().TimeFlight;
 		} else if(Player.GetComponent<PlayerScript> ().OnGround && GameControlScript.Instance.IsGameOn){		//player can't jump if the press duration is <= 0.5s
 			hold = false;
 			armature.animation.FadeIn (idleAnimation, 0.25f, 1);

@@ -103,14 +103,13 @@ public class GameControlScript : MonoBehaviour {
 	public void Pause(){
 		GameState [0].SetActive (false);
 		GameState [2].SetActive (true);
-		isGameOn = false;
+		FindObjectOfType<SFXPlayer> ().m_audioSource.Stop ();
 		Time.timeScale = 0;
 	}
 
 	public void Resume(){
 		GameState [0].SetActive (true);
 		GameState [2].SetActive (false);
-		isGameOn = true;
 		Time.timeScale = 1;
 		FindObjectOfType<TouchInputMovement> ().CancelJump ();
 	}
