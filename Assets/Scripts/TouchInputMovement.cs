@@ -51,11 +51,7 @@ public class TouchInputMovement : MonoBehaviour, IPointerUpHandler, IPointerDown
 		if (hold) {
 			if (Player.GetComponent<PlayerScript> ().OnGround && !GameControlScript.Instance.IsBGMove &&
 			    !GameControlScript.Instance.IsGameOver) {
-				//if (jumpPressure < maxJumpPressure) {
 				jumpPressure += Time.deltaTime * 9f;
-				//} else {
-				//jumpPressure = maxJumpPressure;
-				//}
 
 				Player.GetComponentInChildren<LaunchArcRenderer> ().velocity = jumpPressure;		//draw arc line
 				minJumpDur -= Time.deltaTime;

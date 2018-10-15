@@ -31,24 +31,32 @@ public class PlayerScript : MonoBehaviour {
 		m_MusicPlayer = FindObjectOfType<MusicPlayer> ();
 	}
 
+	void FixedUpdate () {
+		
+	}
+
 	void Update () {
 		if (onGround) {
 			rb.freezeRotation = false;
+			//rb.gravityScale = 1;
 		} else {
+			//rb.gravityScale += Time.deltaTime *3.5f;
 			rb.freezeRotation = true;
 			isLanding = false;
 			if(!GameControlScript.Instance.IsGameOn){
 				if (airTransitionTime >= 0.5f) {
 					airTransitionTime -= Time.deltaTime;
-					if(airTransitionTime <= 0.5f){
+					if (airTransitionTime <= 0.5f) {
 						armature.animation.FadeIn (onAirAnimation, 0.3f, 1);
 					}
-				}else if(airTransitionTime >= 0f) {
+				} else if (airTransitionTime >= 0f) {
 					airTransitionTime -= Time.deltaTime;
-					if(airTransitionTime <= 0f && airTransitionTime != -1f){
+					if (airTransitionTime <= 0f && airTransitionTime != -1f) {
 						armature.animation.FadeIn (prepareLandingAnimation, 0.1f, -1);
 						airTransitionTime = -1f;
 					}
+				} else {
+					rb.AddRelativeForce (Vector2.down * 2f);
 				}
 			}
 		}
@@ -81,6 +89,7 @@ public class PlayerScript : MonoBehaviour {
 			isLanding = true;
 			timerAnimationToIdle = 0.75f;						//play idle animation
 			m_SFXPlayer.m_audioSource.PlayOneShot (m_SFXPlayer.sfxAudio [2]);		//landing sfx
+			Time.timeScale = 1;
 		}			
 	}
 
