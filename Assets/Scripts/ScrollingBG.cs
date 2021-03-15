@@ -29,15 +29,27 @@ public class ScrollingBG : MonoBehaviour {
 		if (cameraTransform.position.x > (layers [rightIndex].transform.position.x - viewZone)) {
 			ScrollRight ();
 		}
+
+		if (cameraTransform.position.x < (layers [leftIndex].transform.position.x + viewZone)) {
+			ScrollLeft ();
+		}
 	}
 	
 	private void ScrollRight(){
-		//int lastLeft = leftIndex;
 		layers [leftIndex].position = Vector3.right * (layers [rightIndex].position.x + bgSize);
 		rightIndex = leftIndex;
 		leftIndex++;
 		if(leftIndex == layers.Length){
 			leftIndex = 0;
+		}
+	}
+
+	private void ScrollLeft(){
+		layers [rightIndex].position = Vector3.right * (layers [leftIndex].position.x - bgSize);
+		leftIndex = rightIndex;
+		rightIndex--;
+		if(rightIndex < 0){
+			rightIndex = layers.Length-1;
 		}
 	}
 }
